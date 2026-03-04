@@ -15,7 +15,9 @@ serviceWorkerRegistration.register({
   onUpdate: (registration) => {
     if (registration.waiting) {
       registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-      window.location.reload();
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.location.reload();
+      });
     }
   },
   onSuccess: () => {
