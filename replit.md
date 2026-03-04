@@ -77,10 +77,28 @@ Organized into logical routes:
 - `/api/coupons/`
 - `/api/feedback/`
 
+## GitHub Repository
+- **Web Platform:** https://github.com/ivonh/onda-platform (full codebase)
+- **Mobile Strategy:** PWA for Android (installable from browser), potential React Native fork later
+
+## Progressive Web App (PWA)
+- **Manifest:** `frontend/public/manifest.json` — app name, icons, theme colors, standalone display mode
+- **Service Worker:** `frontend/public/service-worker.js` — network-first caching for API calls, cache-first fallback for static assets, offline support, push notification handling
+- **Registration:** `frontend/src/serviceWorkerRegistration.js` — auto-registers SW, handles updates with page reload
+- **Icons:** `frontend/public/icons/` — PNG icons at 72, 96, 128, 144, 152, 192, 384, 512px with Onda branding (gold "O" on dark background)
+- **Install:** Users on Android Chrome can "Add to Home Screen" for native-like app experience
+
+## Dev Environment
+- **Frontend Dev Server:** Port 5000 (CRACO/webpack dev server)
+- **Backend API Server:** Port 8000 (FastAPI/Uvicorn)
+- **API Proxy:** `craco.config.js` proxies `/api/*` from port 5000 → port 8000
+- **API Client:** `api.js` uses `baseURL: '/api'` (relative). All route calls omit `/api` prefix since it's in baseURL.
+
 ## External Dependencies
 - **PostgreSQL:** Primary database.
 - **Stripe:** Payment processing, saved cards, and payout management. Integrated via Replit's connection API.
 - **OpenAI:** Powers the AI Beauty Concierge chatbot through Replit AI Integrations.
+- **GitHub:** Connected via Replit integration for repository management.
 - **Google Maps JavaScript API & Places API:** For address geocoding, route calculation, and interactive map displays (requires `REACT_APP_GOOGLE_MAPS_API_KEY`).
 - **Firebase:** For push notifications.
 - **Twilio/SendGrid (Optional):** For SMS/email notifications.
