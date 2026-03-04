@@ -1,8 +1,11 @@
 const CACHE_NAME = 'onda-cache-v1';
+const API_CACHE_NAME = 'onda-api-cache-v1';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/manifest.json',
+  '/icons/icon-192x192.png',
+  '/icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -11,7 +14,6 @@ self.addEventListener('install', (event) => {
       return cache.addAll(STATIC_ASSETS);
     })
   );
-  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
@@ -19,7 +21,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames
-          .filter((name) => name !== CACHE_NAME)
+          .filter((name) => name !== CACHE_NAME && name !== API_CACHE_NAME)
           .map((name) => caches.delete(name))
       );
     })
@@ -27,49 +29,73 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  if (url.pathname.startsWith('/api/')) {
-    event.respondWith(
-      fetch(request)
-        .then((response) => response)
-        .catch(() => {
-          return new Response(
-            JSON.stringify({ error: 'You appear to be offline. Please check your connection.' }),
-            { status: 503, headers: { 'Content-Type': 'application/json' } }
-          );
-        })
-    );
+  if (request.method !== 'GET') {
     return;
   }
 
-  if (request.method === 'GET') {
+  if (url.pathname.startsWith('/api/')) {
     event.respondWith(
       fetch(request)
         .then((response) => {
           if (response.status === 200) {
             const responseClone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => {
+            caches.open(API_CACHE_NAME).then((cache) => {
               cache.put(request, responseClone);
             });
           }
           return response;
         })
         .catch(() => {
-          return caches.match(request).then((cachedResponse) => {
-            if (cachedResponse) {
-              return cachedResponse;
-            }
-            if (request.headers.get('accept').includes('text/html')) {
-              return caches.match('/');
-            }
-            return new Response('Offline', { status: 503 });
+          return caches.open(API_CACHE_NAME).then((cache) => {
+            return cache.match(request).then((cachedResponse) => {
+              if (cachedResponse) {
+                return cachedResponse;
+              }
+              return new Response(
+                JSON.stringify({ error: 'You appear to be offline. Please check your connection.' }),
+                { status: 503, headers: { 'Content-Type': 'application/json' } }
+              );
+            });
           });
         })
     );
+    return;
   }
+
+  event.respondWith(
+    fetch(request)
+      .then((response) => {
+        if (response.status === 200) {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseClone);
+          });
+        }
+        return response;
+      })
+      .catch(() => {
+        return caches.match(request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          const accept = request.headers.get('accept') || '';
+          if (accept.includes('text/html')) {
+            return caches.match('/');
+          }
+          return new Response('Offline', { status: 503 });
+        });
+      })
+  );
 });
 
 self.addEventListener('push', (event) => {
