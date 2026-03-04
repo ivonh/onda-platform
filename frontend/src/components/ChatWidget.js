@@ -125,7 +125,7 @@ export function ChatWidget() {
       setFeedbackStep(1);
     } else {
       try {
-        await api.post('/api/feedback/decline', {
+        await api.post('/feedback/decline', {
           booking_id: pendingFeedback.booking_id
         }, {
           headers: { Authorization: `Bearer ${token}` }
@@ -178,7 +178,7 @@ export function ChatWidget() {
   const handleRecommend = async (recommend) => {
     setIsLoading(true);
     try {
-      await api.post('/api/feedback/submit', {
+      await api.post('/feedback/submit', {
         booking_id: pendingFeedback.booking_id,
         overall_rating: feedbackData.overall_rating,
         what_they_loved: feedbackData.what_they_loved,
@@ -247,7 +247,7 @@ export function ChatWidget() {
         userContext.suburb = location.suburb || location.address;
       }
 
-      const response = await api.post('/api/chat/', {
+      const response = await api.post('/chat/', {
         messages: [...messages, userMessage].map(m => ({
           role: m.role,
           content: m.content
