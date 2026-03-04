@@ -1,0 +1,284 @@
+/* Swiper carousel custom styles */
+.stylist-carousel .swiper-button-next,
+.stylist-carousel .swiper-button-prev {
+  color: hsl(var(--primary));
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.stylist-carousel .swiper-button-next:hover,
+.stylist-carousel .swiper-button-prev:hover {
+  background: rgba(255, 179, 102, 0.2);
+}
+
+.stylist-carousel .swiper-button-next::after,
+.stylist-carousel .swiper-button-prev::after {
+  font-size: 20px;
+}
+
+.stylist-carousel .swiper-pagination-bullet {
+  background: hsl(var(--primary));
+  opacity: 0.3;
+  width: 12px;
+  height: 12px;
+}
+
+.stylist-carousel .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: hsl(var(--primary));
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="4" numOctaves="4" /%3E%3C/filter%3E%3Crect width="100%" height="100%" filter="url(%23noiseFilter)" /%3E%3C/svg%3E');
+  z-index: 9999;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(30, 20, 15, 0.98) 50%, rgba(0, 0, 0, 0.95) 100%);
+  position: relative;
+}
+
+.hero-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(255, 179, 102, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.glass-nav {
+  backdrop-filter: blur(24px);
+  background: rgba(0, 0, 0, 0.75);
+  border-bottom: 1px solid rgba(255, 179, 102, 0.1);
+}
+
+.btn-primary {
+  @apply bg-primary text-black rounded-full px-8 py-4 hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-primary/20 font-montserrat font-semibold tracking-wide;
+}
+
+.btn-secondary {
+  @apply border-2 border-primary text-primary rounded-full px-8 py-4 hover:bg-primary/10 transition-all font-montserrat font-semibold tracking-wide;
+}
+
+.card-hover {
+  @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30;
+}
+
+.input-flushed {
+  @apply bg-card border-b-2 border-border focus:border-primary rounded-none px-0 py-4 transition-colors placeholder:text-muted-foreground/50 text-foreground;
+}
+
+.gold-badge {
+  @apply bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 text-black font-bold shadow-lg shadow-yellow-500/30;
+}
+
+.service-icon {
+  @apply w-8 h-8 bg-black/60 backdrop-blur-sm rounded-full p-1.5 border border-primary/40 text-primary;
+}
+
+.luxury-card {
+  @apply bg-gradient-to-br from-card via-card to-card/80 border border-border/40 backdrop-blur-sm;
+}
+
+.discount-badge {
+  @apply bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold px-3 py-1 rounded-full text-sm shadow-lg animate-pulse;
+}
+
+/* ── Button Shimmer Sweep ── */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 70%,
+    transparent 100%
+  );
+  transition: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-shimmer:hover::before {
+  animation: btn-shimmer-sweep 0.75s ease-in-out;
+}
+
+.btn-shimmer:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+@keyframes btn-shimmer-sweep {
+  0% { left: -100%; }
+  100% { left: 150%; }
+}
+
+/* ── Firework Particles ── */
+.firework-particle {
+  animation: firework-burst 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes firework-burst {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ── Onda Glow Pulse ── */
+.onda-glow {
+  animation: onda-glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes onda-glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 179, 102, 0.3)) drop-shadow(0 0 16px rgba(255, 179, 102, 0.1));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(255, 179, 102, 0.6)) drop-shadow(0 0 28px rgba(255, 179, 102, 0.25)) drop-shadow(0 0 48px rgba(255, 179, 102, 0.1));
+  }
+}
+
+@keyframes text-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: -100% 50%; }
+}
+
+@keyframes splash-logo-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes splash-tagline-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes splash-dot-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ── Chat Widget Glow ── */
+.chat-widget-glow {
+  animation: chat-glow 3s ease-in-out infinite;
+}
+
+@keyframes chat-glow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(255, 179, 102, 0.3), 0 0 24px rgba(255, 179, 102, 0.1), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 179, 102, 0.5), 0 0 40px rgba(255, 179, 102, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ── Onda Loading Spinner ── */
+.onda-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: onda-spin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes onda-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.onda-spinner-ring {
+  animation: onda-ring-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes onda-ring-pulse {
+  0%, 100% { stroke-dashoffset: 60; opacity: 0.6; }
+  50% { stroke-dashoffset: 15; opacity: 1; }
+}
+
+/* ── Zelda Hearts ── */
+.heart-container {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.zelda-heart {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.zelda-heart.filled {
+  filter: drop-shadow(0 0 4px rgba(255, 179, 102, 0.6));
+  animation: heart-glow 2s ease-in-out infinite;
+}
+
+.zelda-heart.half {
+  filter: drop-shadow(0 0 3px rgba(255, 179, 102, 0.4));
+}
+
+@keyframes heart-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(255, 179, 102, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(255, 179, 102, 0.8)) drop-shadow(0 0 16px rgba(255, 179, 102, 0.3));
+  }
+}
+
+/* ── Gold Standard Card Glow ── */
+.gold-standard-card {
+  border: 1px solid rgba(255, 179, 102, 0.4) !important;
+  animation: gold-card-glow 3s ease-in-out infinite;
+}
+
+@keyframes gold-card-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 179, 102, 0.15), inset 0 0 8px rgba(255, 179, 102, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 179, 102, 0.3), inset 0 0 12px rgba(255, 179, 102, 0.1);
+  }
+}
+
+/* ── Executive Card Glow (Silver/Platinum) ── */
+.executive-card {
+  border: 1px solid rgba(180, 195, 210, 0.35) !important;
+  animation: exec-card-glow 3s ease-in-out infinite;
+}
+
+@keyframes exec-card-glow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(180, 195, 210, 0.15), inset 0 0 6px rgba(180, 195, 210, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(180, 195, 210, 0.3), inset 0 0 10px rgba(180, 195, 210, 0.08);
+  }
+}

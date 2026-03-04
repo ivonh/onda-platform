@@ -1,0 +1,172 @@
+{
+  "identity": {
+    "name": "E1",
+    "archetype": "The Anti-AI Designer",
+    "mission": "Create a regal, high-end beauty booking experience that feels like a 5-star concierge service, not a utility app."
+  },
+  "theme_strategy": {
+    "mode": "light",
+    "rationale": "Light mode with warm, creamy undertones conveys cleanliness, hygiene, and classic luxury suitable for high-end beauty. Dark mode is reserved for the 'Executive' tier or specific high-contrast marketing sections.",
+    "emotional_tone": "Sophisticated, Serene, Exclusive, Trustworthy."
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Playfair Display, serif",
+      "usage": "All H1-H3 headings. Use italic variants for emphasis words.",
+      "weights": ["400", "600", "700"],
+      "tracking": "tracking-tight"
+    },
+    "body": {
+      "font_family": "Manrope, sans-serif",
+      "usage": "Paragraphs, UI elements, buttons, inputs.",
+      "weights": ["300", "400", "500", "600"],
+      "tracking": "tracking-normal"
+    },
+    "accent": {
+      "font_family": "Cormorant Garamond, serif",
+      "usage": "Pull quotes, testimonials, 'Signature' elements.",
+      "style": "italic"
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "name": "Royal Emerald",
+        "hex": "#1A3C34",
+        "tailwind_var": "166 40% 17%",
+        "usage": "Primary buttons, active states, strong branding elements."
+      },
+      "secondary": {
+        "name": "Antique Gold",
+        "hex": "#C5A059",
+        "tailwind_var": "40 48% 56%",
+        "usage": "Borders, icons, highlights, 'Executive' tier branding."
+      },
+      "background": {
+        "name": "Alabaster",
+        "hex": "#FDFCF8",
+        "tailwind_var": "48 33% 98%",
+        "usage": "Main app background (Light mode)."
+      },
+      "surface": {
+        "name": "Pure White",
+        "hex": "#FFFFFF",
+        "tailwind_var": "0 0% 100%",
+        "usage": "Cards, Modals, Dropdowns."
+      },
+      "text": {
+        "primary": "#111827",
+        "secondary": "#4B5563",
+        "muted": "#9CA3AF"
+      },
+      "status": {
+        "success": "#059669",
+        "error": "#991B1B",
+        "warning": "#D97706"
+      }
+    },
+    "gradients": {
+      "gold_rush": "linear-gradient(135deg, #C5A059 0%, #E5C585 50%, #C5A059 100%)",
+      "emerald_depth": "linear-gradient(180deg, #1A3C34 0%, #0F2922 100%)"
+    }
+  },
+  "layout": {
+    "grid_system": "Bento Grid (Mode A for Marketing, Mode B for Dashboard)",
+    "spacing": {
+      "base": "Generous. Use p-8 or p-12 for containers.",
+      "containers": "Max-width 1400px for marketing, Full width with p-6 for dashboard."
+    },
+    "radius": {
+      "default": "rounded-none",
+      "buttons": "rounded-full",
+      "cards": "rounded-sm"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-white rounded-full px-8 py-6 hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl",
+      "secondary": "border border-primary text-primary rounded-full px-8 py-6 hover:bg-primary/5 transition-all",
+      "ghost": "text-primary hover:bg-primary/5 rounded-full px-6"
+    },
+    "cards": {
+      "style": "bg-white border border-border/40 shadow-sm hover:shadow-md transition-all duration-300",
+      "hover_effect": "Lift up 2px, border color shifts to Gold (#C5A059)."
+    },
+    "inputs": {
+      "style": "bg-transparent border-b border-border focus:border-primary rounded-none px-0 py-4 transition-colors placeholder:text-muted-foreground/50"
+    },
+    "navigation": {
+      "style": "Glassmorphism (backdrop-blur-xl bg-white/80) sticky top-0 z-50 border-b border-white/20"
+    }
+  },
+  "visual_enhancers": {
+    "textures": "Subtle grain overlay (opacity 0.03) on all backgrounds to remove digital flatness.",
+    "shadows": "Soft, diffuse shadows: shadow-[0_8px_30px_rgb(0,0,0,0.04)].",
+    "decorations": "Use thin 1px Gold lines to separate sections. Use serif italic numbers (1, 2, 3) for steps."
+  },
+  "motion": {
+    "page_transition": "Fade in + Slide up (20px). Duration 0.6s ease-out.",
+    "hover": "Scale 1.02, brightness 1.1.",
+    "scroll": "Parallax effect on hero images. Staggered entrance for list items."
+  },
+  "images": {
+    "hero_section": {
+      "url": "https://images.unsplash.com/photo-1758188753373-5b01a0fc6d9d?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "alt": "Minimalist luxury salon interior with shelf display",
+      "usage": "Main landing page hero background or split layout image."
+    },
+    "stylist_portraits": [
+      {
+        "url": "https://images.unsplash.com/photo-1616723355486-eac8780bfcb9?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "alt": "Professional stylist in red blazer",
+        "category": "Top Stylist"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1638474368314-59198edde028?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "alt": "Blonde hair stylist professional",
+        "category": "Top Stylist"
+      }
+    ],
+    "service_thumbnails": {
+      "hair": "https://images.unsplash.com/photo-1762342683246-29f1044c6372?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "nails": "https://images.pexels.com/photos/3997381/pexels-photo-3997381.jpeg",
+      "salon_ambiance": "https://images.unsplash.com/photo-1706629503603-e47c37722776?crop=entropy&cs=srgb&fm=jpg&q=85"
+    }
+  },
+  "instructions_to_main_agent": {
+    "setup": [
+      "Install fonts: Playfair Display and Manrope from Google Fonts.",
+      "Update tailwind.config.js with the specific colors and font families defined above.",
+      "Override Shadcn default radius to 0 or 0.25rem for a sharper, more elegant look.",
+      "Install 'lucide-react' for icons (use thin stroke width: 1.5px)."
+    ],
+    "layout_rules": [
+      "Do not use standard Bootstrap columns. Use the Bento Grid strategy.",
+      "Ensure all text has sufficient contrast (APCA check).",
+      "Use 'gap-8' or 'gap-12' for layout spacing to create breathing room."
+    ],
+    "component_overrides": [
+      "Button: Make them pill-shaped (rounded-full).",
+      "Card: Remove heavy shadows, use subtle borders.",
+      "Input: Use 'flushed' style (border-bottom only) for a cleaner look in forms."
+    ]
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms.",
+    "You MUST NOT center align the app container.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations.",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories = main agent will use placeholder text which is FORBIDDEN.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "Components MUST use named exports.",
+    "Pages MUST use default exports.",
+    "Use sonner for toasts."
+  ]
+}

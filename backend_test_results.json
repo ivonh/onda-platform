@@ -1,0 +1,44 @@
+{
+  "summary": {
+    "total_tests": 7,
+    "passed_tests": 4,
+    "success_rate": 57.14285714285714
+  },
+  "detailed_results": [
+    {
+      "test": "Root endpoint",
+      "success": true,
+      "details": "Status: 200"
+    },
+    {
+      "test": "Health endpoint",
+      "success": true,
+      "details": "Status: 200"
+    },
+    {
+      "test": "Client Registration",
+      "success": false,
+      "details": "Status: 400 (Expected 201) - Bot verification failed"
+    },
+    {
+      "test": "Stylist Registration",
+      "success": false,
+      "details": "Status: 400 (Expected 201) - Bot verification failed"
+    },
+    {
+      "test": "Search Stylists",
+      "success": true,
+      "details": "Status: 200"
+    },
+    {
+      "test": "Top Stylists",
+      "success": true,
+      "details": "Status: 200"
+    },
+    {
+      "test": "Auth endpoints",
+      "success": false,
+      "details": "No client token available"
+    }
+  ]
+}
